@@ -34,6 +34,6 @@ Built with **SOLID principles** for code that's as maintainable as it is functio
 
 **Credits**: Built with Unity 2022 and occasional AI-assisted code structuring. 
 
-** Pro Tip**: The sword’s rotation logic went through 12 iterations—check out `SwordAttack.cs` to see how AI helped optimize the angle calculations!  
+Fun Fact: The sword’s rotation logic went through 12 iterations—check out `SwordAttack.cs` to see how AI helped optimize the angle calculations!  
 
 **Za Warudo** This user is a stand user.
