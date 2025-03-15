@@ -52,6 +52,12 @@
 //    }
 
 //}
+
+
+
+
+
+
 using UnityEngine;
 using System.Collections;
 
@@ -80,19 +86,31 @@ public class WaveManager : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("Wave " + currentWave + " starting...");
-            enemiesAlive = currentWave * 10;
-
-            enemyManager.SpawnEnemies(enemiesAlive); 
-
-            while (enemiesAlive > 0)
-            {
-                yield return null;
-            }
-
+            StartWaveCycle();
+            yield return WaitUntilWaveEnd();
             yield return new WaitForSeconds(waveInterval);
-            currentWave++;
+            AdvanceWave();
         }
+    }
+
+    private void StartWaveCycle()
+    {
+        Debug.Log("Wave " + currentWave + " starting...");
+        enemiesAlive = currentWave * 10;
+        enemyManager.SpawnEnemies(enemiesAlive);
+    }
+
+    private IEnumerator WaitUntilWaveEnd()
+    {
+        while (enemiesAlive > 0)
+        {
+            yield return null;
+        }
+    }
+
+    private void AdvanceWave()
+    {
+        currentWave++;
     }
 
     public void EnemyDefeated()
@@ -100,7 +118,7 @@ public class WaveManager : MonoBehaviour
         enemiesAlive--;
         if (enemiesAlive <= 0)
         {
-            StartCoroutine(StartWave());
+           
         }
     }
 }

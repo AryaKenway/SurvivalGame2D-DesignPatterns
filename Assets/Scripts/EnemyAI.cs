@@ -58,7 +58,7 @@
 
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 3f;
     public int health = 30;
@@ -98,7 +98,7 @@ public class EnemyAI : MonoBehaviour
         rb.linearVelocity = direction * moveSpeed;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
@@ -107,9 +107,17 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
-        waveManager.EnemyDefeated();
+        if (WaveManager.Instance != null)
+        {
+            WaveManager.Instance.EnemyDefeated();
+        }
+        else
+        {
+            Debug.LogError("WaveManager instance is null. Ensure it is active in the scene.");
+        }
         Destroy(gameObject);
     }
+
 }

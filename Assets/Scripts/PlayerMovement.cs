@@ -32,7 +32,42 @@
 //        Debug.Log("PlayerMovement Destroyed: " + gameObject.name);
 //    }
 //}
+
+
+
+
+
+
 using UnityEngine;
+
+
+public interface IMovementPlan
+{
+    Vector2 CalculateMovement(Rigidbody2D rb, Vector2 moveDirection, float moveSpeed);
+}
+
+
+public class BasicMovementPlan : IMovementPlan
+{
+    public Vector2 CalculateMovement(Rigidbody2D rb, Vector2 moveDirection, float moveSpeed)
+    {
+        return moveDirection * moveSpeed;
+    }
+}
+
+
+public class CustomMovementPlan : IMovementPlan
+{
+    public float acceleration = 5f;
+
+    public Vector2 CalculateMovement(Rigidbody2D rb, Vector2 moveDirection, float moveSpeed)
+    {
+        Vector2 movement = moveDirection * moveSpeed;
+        
+        rb.AddForce(movement * acceleration, ForceMode2D.Force);
+        return movement;
+    }
+}
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -40,11 +75,15 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
+    private IMovementPlan movementStrategy;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
+        
+        movementStrategy = new BasicMovementPlan();
+        
     }
 
     void Update()
@@ -56,7 +95,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = moveDirection * moveSpeed;
+        Vector2 movement = movementStrategy.CalculateMovement(rb, moveDirection, moveSpeed);
+        rb.linearVelocity = movement;
         rb.angularVelocity = 0f;
     }
 
