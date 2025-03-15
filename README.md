@@ -1,5 +1,6 @@
-# SurvivalGame2D-DesignPatterns
-#  2D Survival Game
+
+#  2D Survival Game with SOLID Principles
+**Please clone the Updated branch and not the Main** for the updated version.
 
 **Survive ever-growing enemy hordes** in this intense 2D battleground—a passion project developed with a touch of AI-powered insights to streamline code structure and squash bugs!  
 
@@ -22,8 +23,8 @@ Built with **SOLID principles** for code that's as maintainable as it is functio
 - **`EnemyAI`**: All baddies share the same `IDamageable` interface, making combat logic clean and consistent.  
 - **`WaveManager`**: Handles enemy spawns and difficulty scaling like a pro.  
 
-## 🚀 Quick Start  
-1. Clone the repo and dive straight into Unity.  
+##  Quick Start  
+1. Clone the repo under the **Updated** branch and dive straight into Unity.  
 2. Assign prefabs/spawn points via the inspector (hint: I’ve commented the code for clarity!).  
 3. Hit **Play**—your survival instincts will thank you.  
 
