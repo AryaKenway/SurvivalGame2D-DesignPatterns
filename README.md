@@ -28,8 +28,8 @@ Built with **SOLID principles** for code that's as maintainable as it is functio
 2. Assign prefabs/spawn points via the inspector (hint: I’ve commented the code for clarity!).  
 3. Hit **Play**—your survival instincts will thank you.  
 
-![Game Image displayed here](Assets/GithubImages/Screenshot 2025-08-25 100144.png)
-![Game Image displayed here](Assets/GithubImages/Screenshot 2025-08-25 100223.png)
+![Game Image displayed here](Assets/GithubImages/Image1.png)
+![Game Image displayed here](Assets/GithubImages/Image2.png)
 
 ---
 
